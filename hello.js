@@ -1,5 +1,7 @@
-function findMeaning(){
-    return 42;
-}
+const mission = 'learn';
 
-console.log(findMeaning());
+if(mission == 'learn'){
+    console.log('Time to write some node code!');   
+} else {
+    console.log(`Is ${mission} really more fun?`);
+}
