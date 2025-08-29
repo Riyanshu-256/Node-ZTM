@@ -27,7 +27,7 @@ A clean, production-ready **Node.js scaffold** for building APIs, CLIs, and back
 ---
 
 ## 🚀 Quick Start
-```bash
+
 # Clone
 git clone https://github.com/Riyanshu-256/Node.js-ZTM.git
 cd Node.js-ZTM
@@ -76,4 +76,4 @@ GET /health → { "status": "ok", "uptime": 123.45 }
 📄 License
 Licensed under MIT.
 
-<p align="center"> Made with ❤️ by <a href="https://github.com/Riyanshu-256">Riyanshu Sharma</a> </p> ```
+<p align="center"> Made with ❤️ by <a href="https://github.com/Riyanshu-256">Riyanshu Sharma</a> </p>
