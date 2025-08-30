@@ -99,30 +99,30 @@ npm run dev
 
 ## ✅ Learning Checklist
 
-* [x] 🟢 Setup Node & NPM
-* [x] 👋 Run a basic script (`hello.js`)
-* [ ] 📦 CommonJS vs ESM modules (`require` vs `import`)
-* [ ] 📂 File System (fs), Path, OS modules
-* [ ] 🌐 HTTP basics – build a simple server
-* [ ] 🚏 Express.js fundamentals
-* [ ] 🔄 REST API (CRUD)
-* [ ] 🛡 Middleware & error handling
-* [ ] 🔑 Environment variables (`dotenv`)
-* [ ] 🗄 MongoDB / PostgreSQL integration
-* [ ] 🔐 Authentication (JWT)
+*  🟢 Setup Node & NPM
+*  👋 Run a basic script (`hello.js`)
+*  📦 CommonJS vs ESM modules (`require` vs `import`)
+*  📂 File System (fs), Path, OS modules
+*  🌐 HTTP basics – build a simple server
+*  🚏 Express.js fundamentals
+*  🔄 REST API (CRUD)
+*  🛡 Middleware & error handling
+*  🔑 Environment variables (`dotenv`)
+*  🗄 MongoDB / PostgreSQL integration
+   🔐 Authentication (JWT)
 
 
 ---
 
 ## 🧭 Roadmap
 
-1. 🟢 **Core Node** (modules, event loop, async patterns)
-2. 🌐 **HTTP & Express** (routing, middleware)
-3. 🗄 **Data layer** (MongoDB or Postgres)
-4. 🔐 **Auth & security** (JWT, hashing, validation)
-5. 🧪 **Testing** (unit/integration)
-6. 🐳 **Docker & CI** (image, pipeline)
-7. ☁️ **Deploy** (cloud host)
+ 🟢 **Core Node** (modules, event loop, async patterns)
+ 🌐 **HTTP & Express** (routing, middleware)
+ 🗄 **Data layer** (MongoDB or Postgres)
+ 🔐 **Auth & security** (JWT, hashing, validation)
+ 🧪 **Testing** (unit/integration)
+ 🐳 **Docker & CI** (image, pipeline)
+ ☁️ **Deploy** (cloud host)
 
 ---
 
