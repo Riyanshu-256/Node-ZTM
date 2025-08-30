@@ -116,13 +116,13 @@ npm run dev
 
 ## 🧭 Roadmap
 
- 🟢 **Core Node** (modules, event loop, async patterns)
- 🌐 **HTTP & Express** (routing, middleware)
- 🗄 **Data layer** (MongoDB or Postgres)
- 🔐 **Auth & security** (JWT, hashing, validation)
- 🧪 **Testing** (unit/integration)
- 🐳 **Docker & CI** (image, pipeline)
- ☁️ **Deploy** (cloud host)
+ 1. 🟢 **Core Node** (modules, event loop, async patterns)
+ 2. 🌐 **HTTP & Express** (routing, middleware)
+ 3. 🗄 **Data layer** (MongoDB or Postgres)
+ 4. 🔐 **Auth & security** (JWT, hashing, validation)
+ 5. 🧪 **Testing** (unit/integration)
+ 6. 🐳 **Docker & CI** (image, pipeline)
+ 7. ☁️ **Deploy** (cloud host)
 
 ---
 
