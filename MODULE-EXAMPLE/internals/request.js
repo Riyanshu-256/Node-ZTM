@@ -14,6 +14,7 @@ function send(url, data) {
   console.log(`sending ${encryptedData} to ${url}`);
 }
 
+// Allow other files to use REQUEST_TIMEOUT and send
 module.export = {
     REQUEST_TIMEOUT,
     send,
