@@ -1,10 +1,12 @@
-const { send } = require('./request');
-const { read } = require('./response');
-const {REQUEST_TIMEOUT} = require('./request');
+const internals = require('./internals');
+
+// const { send } = require('./internals/request');
+// const { read } = require('./internals/response');
+// const {REQUEST_TIMEOUT} = require('./internals/request');
 
 function makeRequest(url, data) {
-  send(url, data);
-  return read();
+  internals.request.send(url, data);
+  return internals.response.read();
 }
 
 const responseData = makeRequest('https://google.com', 'hello');
