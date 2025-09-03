@@ -1,52 +1,57 @@
-const http = require('http');  // Import http module to make a server
+const http = require('http');  // Load http module to make a server
 
-const PORT = 3000;  // Port number where server will run
+const PORT = 3000;  // Port where server will run
 
 const server = http.createServer();  // Create a server
 
-// Some sample friends data
+// A list of friends (sample data)
 const friends = [
   { id: 0, name: 'Nikola Tesla' },
   { id: 1, name: 'Sir Isaac Newton' },
   { id: 2, name: 'Albert Einstein' }
 ];
 
-// Handle requests
 server.on('request', (req, res) => {
-  const items = req.url.split('/'); // Split URL into parts. Example: /friends/2 → ['', 'friends', '2']
+  const items = req.url.split('/');  // Break URL into parts like /friends/2 → ['', 'friends', '2']
 
-  // If user asks for /friends
-  if (items[1] === 'friends') {
-    res.statusCode = 200;  
-    res.setHeader('Content-Type', 'application/json');  
+  // Handle POST request → Add a new friend
+  if (req.method === 'POST' && items[1] === 'friends') {
+    req.on('data', (data) => {
+      const friend = data.toString();  // Convert data to string
+      console.log('Request', data);  // Log received data
+      friends.push(JSON.parse(friend));  // Add new friend to array
+    });
+    req.pipe(res); // Send back what was received
 
-    // If a specific ID is given like /friends/2
-    if (items.length === 3) {
-      const friendIndex = Number(items[2]);  
-      res.end(JSON.stringify(friends[friendIndex]));  // Send only that one friend
+  // Handle GET request → Get all friends or one by ID
+  } else if (req.method === 'GET' && items[1] === 'friends') {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+
+    if (items.length === 3) {  
+      const friendIndex = Number(items[2]);  // Take ID from URL
+      res.end(JSON.stringify(friends[friendIndex]));  // Send one friend
     } else {
-      res.end(JSON.stringify(friends));  // Send full friends list
+      res.end(JSON.stringify(friends));  // Send all friends
     }
 
-  // If user asks for /messages
+  // Handle /messages → Send simple HTML page
   } else if (items[1] === 'messages') {
-    res.setHeader('Content-Type', 'text/html');  
-    res.write('<html><body><ul>');  
-    res.write('<li>Hello Isaac!</li>');  
-    res.write('<li>What are your thoughts on astronomy?</li>');  
-    res.write('</ul></body></html>');  
-    res.end();  // Send HTML page with messages
+    res.setHeader('Content-Type', 'text/html');
+    res.write('<html><body><ul>');
+    res.write('<li>Hello Isaac!</li>');
+    res.write('<li>What are your thoughts on astronomy?</li>');
+    res.write('</ul></body></html>');
+    res.end();
 
-  // If user asks for something else
+  // Handle unknown URL → Show 404
   } else {
-    res.statusCode = 404;  
-    res.end();  // Send "Not Found"
+    res.statusCode = 404;
+    res.end();
   }
 });
 
-// Start server
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });
-
 // Open in browser: http://localhost:3000
