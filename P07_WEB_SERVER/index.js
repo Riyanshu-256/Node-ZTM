@@ -1,38 +1,52 @@
-// Load the 'http' module to make a web server
-const http = require('http');
+const http = require('http');  // Import http module to make a server
 
-// Set the port number for the server
-const PORT = 3000;
+const PORT = 3000;  // Port number where server will run
 
-// Create the server
-const server = http.createServer((req, res) => {
+const server = http.createServer();  // Create a server
 
-    // If the user visits /friends
-    if (req.url === '/friends') {
-        res.statusCode = 200; // Status OK
-        res.setHeader('Content-type', 'application/json'); // Tell browser it's JSON
-        res.end(JSON.stringify({ id: 1, name: 'Sir Isaac Newton' })); // Send JSON data
+// Some sample friends data
+const friends = [
+  { id: 0, name: 'Nikola Tesla' },
+  { id: 1, name: 'Sir Isaac Newton' },
+  { id: 2, name: 'Albert Einstein' }
+];
 
-    // If the user visits /messages
-    } else if (req.url === '/messages') {
-        res.setHeader('Content-type', 'text/html'); // Tell browser it's HTML
-        // Send simple HTML message
-        res.write('<html><body><ul>');
-        res.write('<li>Hello Isaac!</li>');
-        res.write('<li>What are your thoughts on astronomy?</li>');
-        res.write('</ul></body></html>');
-        res.end();
+// Handle requests
+server.on('request', (req, res) => {
+  const items = req.url.split('/'); // Split URL into parts. Example: /friends/2 → ['', 'friends', '2']
 
-    // For any other page
+  // If user asks for /friends
+  if (items[1] === 'friends') {
+    res.statusCode = 200;  
+    res.setHeader('Content-Type', 'application/json');  
+
+    // If a specific ID is given like /friends/2
+    if (items.length === 3) {
+      const friendIndex = Number(items[2]);  
+      res.end(JSON.stringify(friends[friendIndex]));  // Send only that one friend
     } else {
-        res.statusCode = 404; // Page not found
-        res.end();
+      res.end(JSON.stringify(friends));  // Send full friends list
     }
+
+  // If user asks for /messages
+  } else if (items[1] === 'messages') {
+    res.setHeader('Content-Type', 'text/html');  
+    res.write('<html><body><ul>');  
+    res.write('<li>Hello Isaac!</li>');  
+    res.write('<li>What are your thoughts on astronomy?</li>');  
+    res.write('</ul></body></html>');  
+    res.end();  // Send HTML page with messages
+
+  // If user asks for something else
+  } else {
+    res.statusCode = 404;  
+    res.end();  // Send "Not Found"
+  }
 });
 
-// Start the server and show message in console
+// Start server
 server.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}...`);
+  console.log(`Listening on port ${PORT}...`);
 });
 
-// 127.0.0.1 or localhost is used to open this server in browser
+// Open in browser: http://localhost:3000
