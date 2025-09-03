@@ -1,0 +1,16 @@
+{
+  "name": "p06_planets_project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "csv-parse": "^6.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
