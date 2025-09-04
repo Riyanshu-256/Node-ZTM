@@ -1,31 +1,34 @@
-// Import express library (require karke Express framework load kiya)
-const express = require('express');
+// Import express package  
+const express = require('express');  
+// This imports the "express" library so we can use it in our code  
 
-// Express app ka object create kiya (server banane ke liye use hoga)
-const app = express();
+// We create an Express app object, which will act as our server  
+const app = express();  
+// This line creates an Express application (our server) that will handle requests and responses  
 
-// Port number jisme server chalega
-const PORT = 3000;
+// Port number where the server will run  
+const PORT = 3000;  
+// This is the port number where our server will be available  
 
-// Route 1: Root URL ('/')
-// Jab user http://localhost:3000/ open karega
-// Tab JSON data return hoga (id aur name)
-app.get('/', (req, res) => {
-    res.send({
-        id: 1,
-        name: 'Sir Isaac Newton'
-    });
-});
+// Route 1: Root URL ('/')  
+// When the user opens http://localhost:3000/  
+// A JSON object will be sent as the response (containing id and name)  
+app.get('/', (req, res) => {  
+    res.send({  
+        id: 1,  
+        name: 'Sir Isaac Newton'  
+    });  
+});  
 
-// Route 2: '/messages'
-// Jab user http://localhost:3000/messages open karega
-// Tab ek simple HTML list return hogi
-app.get('/messages', (req, res) => {
-    res.send('<ul><li>Hello Albert!</li></ul>');
-});
+// Route 2: '/messages'  
+// When the user opens http://localhost:3000/messages  
+// A simple HTML list will be sent as the response  
+app.get('/messages', (req, res) => {  
+    res.send('<ul><li>Hello Albert!</li></ul>');  
+});  
 
-// Server ko start karna
-// Server port 3000 par chalega aur console me message print karega
-app.listen(PORT, () => {
-    console.log(`Listening on ${PORT}...`);
-});
+// Start the server  
+// The server will run on port 3000 and print a message on the console  
+app.listen(PORT, () => {  
+    console.log(`Listening on ${PORT}...`);  
+});  
