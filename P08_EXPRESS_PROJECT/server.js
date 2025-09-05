@@ -76,6 +76,14 @@ app.get('/friends/:friendId', (req, res) => {
   }
 });
 
+app.get('/messages', (req, res) => {
+  res.send('<ul><li>Hello Albert!<li><ul>');
+});
+
+app.post('/messages', (req, res) => {
+  res.send('Updating messages...');
+});
+
 // Start the server  
 // The server will run on port 3000 and print a message on the console  
 app.listen(PORT, () => {  
