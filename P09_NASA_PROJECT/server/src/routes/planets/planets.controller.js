@@ -1,5 +1,5 @@
 // Import (load) the planets data from the planets.model file
-const planets = require('../../models/planets.model');
+const { planets } = require('../../models/planets.model');
 
 // Define a function to handle requests for "all planets"
 function getAllPlanets(req, res) {

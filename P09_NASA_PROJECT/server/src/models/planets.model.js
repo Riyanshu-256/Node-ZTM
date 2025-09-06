@@ -1,40 +1,59 @@
-const { parse } = require('csv-parse');  // Import the csv-parse library
-const fs = require('fs');  // Import the file system module
+// Import csv-parse to help read CSV files
+const { parse } = require('csv-parse');
 
-const habitablePlanets = [];  // Store only habitable planets here
+// Import file system (fs) to read files
+const fs = require('fs');
 
-// Function to check if a planet is habitable
+// Store all planets data here
+const results = [];
+
+// Store only life-supporting planets here
+const habitablePlanets = [];
+
+// Check if a planet can support life
 function isHabitablePlanet(planet) {
-  return planet['koi_disposition'] === 'CONFIRMED'   // Planet is confirmed
-    && planet['koi_insol'] > 0.36   // Insolation (sunlight) not too low
-    && planet['koi_insol'] < 1.11   // Insolation not too high
-    && planet['koi_prad'] < 1.6;   // Planet size less than 1.6 Earth radius
+  return planet['koi_disposition'] === 'CONFIRMED'
+    && planet['koi_insol'] > 0.36 && planet['koi_insol'] < 1.11
+    && planet['koi_prad'] < 1.6;
 }
 
-// Read the CSV file as a stream
-fs.createReadStream('kepler_data.csv')
-  .pipe(parse({    // Parse the CSV line by line
-     comment: '#',  // Skip lines that start with #
-  columns: true,    // Use first row as column names
-}))
-.on('data', (data) => {    // For each row in the file
-  if (isHabitablePlanet(data)) {  // If the planet is good for life
-    habitablePlanets.push(data);  // Save it in the list
-  }
-})
-.on('error', (err) => {    // If something goes wrong
-  console.log(err);     // Show the error
-})
-.on('end', () => {
-  console.log(
-    habitablePlanets.map((planet) => {
-      return planet['kepler_name'];
-    })
-  );
-  console.log(`${habitablePlanets.length} habitable planets found!`);
-});
+// Load planets data from CSV file
+function loadPlanetsData() {
 
+    // Use Promise so we know when reading is done
+    return new Promise((resolve, reject) => {
+
+        // Open the kepler_data.csv file
+        fs.createReadStream('./kepler_data.csv')
+            // Send data to csv parser
+            .pipe(parse({
+                comment: '#',   // Skip lines starting with #
+                columns: true,  // Use first row as column names
+            }))
+            // Runs when one row of data comes
+            .on('data', (data) => {
+                results.push(data);
+                
+                // Add to habitable list if planet is good for life
+                if (isHabitablePlanet(data)) {
+                    habitablePlanets.push(data);
+                }
+            })
+            // Runs if there is an error
+            .on('error', (err) => {
+                console.log(err);
+                reject(err); // Stop if error happens
+            })
+            // Runs after reading is complete
+            .on('end', () => {
+                console.log(`Total habitable planets: ${habitablePlanets.length}`);
+                resolve(); // Finish promise
+            });
+    });
+}
+
+// Export function and data so other files can use them
 module.exports = {
-    planets: habitablePlanets
-};
- 
+    loadPlanetsData,
+    planets: habitablePlanets,
+}
