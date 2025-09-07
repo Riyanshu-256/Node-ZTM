@@ -7,7 +7,7 @@
   <a href="#-tech-stack">🧰 Tech Stack</a> ·
   <a href="#-quick-start">⚡ Quick Start</a> ·
   <a href="#-project-structure">🗂 Project Structure</a> ·  
-  <a href="#-scripts">📜 NPM Scripts</a> ·          
+  <a href="#-scripts">📜 NPM Scripts</a> · 
   <a href="#-learning-checklist">✅ Learning Checklist</a> ·
   <a href="#-roadmap">🧭 Roadmap</a> ·
   <a href="#-contributing">🤝 Contributing</a>
