@@ -1,3 +1,6 @@
+/*
+This file saves all launch details in memory. It lets you see all launches, add new ones, change or remove launches using their flight number, and check which missions are upcoming or successful.
+*/
 const launches = new Map();
 
 const launch = {
