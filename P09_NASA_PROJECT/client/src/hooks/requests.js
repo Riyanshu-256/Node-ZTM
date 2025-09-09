@@ -1,11 +1,24 @@
+// Base URL for the backend API
+// This is where all requests (planets, launches, etc.) will be sent
 const API_URL = 'http://localhost:8000';
 
-// Load planets and return as JSON
+/* 
+Fetch the list of planets from the API
+- Sends a GET request to /planets endpoint
+- Converts the response into JSON
+- Returns the data to the caller
+*/
 async function httpGetPlanets() {
   const response = await fetch(`${API_URL}/planets`);
   return await response.json();
 }
 
+/* 
+Fetch the list of launches from the API
+- Sends a GET request to /launches endpoint
+- Converts the response into JSON
+- Sorts the launches by flight number (ascending) so they appear in order
+*/
 async function httpGetLaunches() {
   const response = await fetch(`${API_URL}/launches`);
   const fetchedLaunches = await response.json();
@@ -14,7 +27,12 @@ async function httpGetLaunches() {
   });
 }
 
-// Submit given launch data to launch system.
+/* 
+Submit a new launch to the API
+- Accepts a "launch" object as input
+- Sends a POST request with launch data in JSON format
+- If an error occurs (like network failure), it returns { ok: false }
+*/
 async function httpSubmitLaunch(launch) {
   try {
     return await fetch(`${API_URL}/launches`, {
@@ -31,13 +49,17 @@ async function httpSubmitLaunch(launch) {
   }
 }
 
-// Delete launch with given ID.
+/* 
+Abort (delete) a launch with a given ID
+- Sends a DELETE request to /launches/:id
+- If request fails (network error), logs the error and returns { ok: false }
+*/
 async function httpAbortLaunch(id) {
   try {
     return await fetch(`${API_URL}/launches/${id}`, {
       method: "delete",
     });
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     return {
       ok: false,
@@ -45,6 +67,8 @@ async function httpAbortLaunch(id) {
   }
 }
 
+// Exporting these functions so other files (like React components)
+// can import and use them to interact with the backend API
 export {
   httpGetPlanets,
   httpGetLaunches,

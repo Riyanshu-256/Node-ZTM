@@ -1,15 +1,18 @@
 /*
-This file is like a “map” for the planets API. It matches URLs (like /planets) to the right controller function, so every request goes to the correct place.
+This file defines routes for the planets API.
+It connects the /planets endpoint to the correct controller function.
 */
 
 const express = require('express');
 
-const {
-  httpGetAllPlanets,
-} = require('./planets.controller');
+// Import controller to handle getting all planets
+const { httpGetAllPlanets } = require('./planets.controller');
 
+// Create a router for /planets
 const planetsRouter = express.Router();
 
+// GET /planets → returns all planets
 planetsRouter.get('/', httpGetAllPlanets);
 
+// Export the router so app.js can use it
 module.exports = planetsRouter;

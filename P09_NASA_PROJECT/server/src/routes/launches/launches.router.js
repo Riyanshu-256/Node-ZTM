@@ -1,20 +1,20 @@
 // Import Express to create routes
 const express = require('express');
 
-// Importing the getAllLaunches Function from different module
+// Import controller functions for launches
 const {
-    httpGetAllLaunches,
-    httpAddNewLaunch,
-    httpAbortLaunch,
+  httpGetAllLaunches,  // Get all launches
+  httpAddNewLaunch,    // Add a new launch
+  httpAbortLaunch,     // Abort a launch by ID
 } = require('./launches.controller');
 
-// Create a new router for launchesRouter
+// Create router for all /launches endpoints
 const launchesRouter = express.Router();
 
-// Function to get all the launches information 
-launchesRouter.get('/', httpGetAllLaunches);
-launchesRouter.post('/', httpAddNewLaunch);
-launchesRouter.delete('/:id', httpAbortLaunch);
+// Define routes for launches
+launchesRouter.get('/', httpGetAllLaunches);    // GET all launches
+launchesRouter.post('/', httpAddNewLaunch);     // POST new launch
+launchesRouter.delete('/:id', httpAbortLaunch); // DELETE launch by ID
 
-// Exporting the module so that we can use it 
+// Export router to be used in app.js
 module.exports = launchesRouter;

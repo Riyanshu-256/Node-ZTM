@@ -1,31 +1,49 @@
 /*
-This file sets up the main Express app. It adds important middlewares (like to read JSON data) and connects all routers, so the whole app works together properly.
- */
+This file sets up the main Express application for the NASA Project.
+It connects all routes (planets, launches), adds middlewares (JSON parser, CORS, logging),
+and serves static files so the entire backend works smoothly.
+*/
 
-// Load the Express library to create a web server and handle routes
-const path = require('path');
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan'); 
+const path = require('path');       // Built-in Node.js module for handling file paths
+const express = require('express'); // Express framework to create a server and handle routes
+const cors = require('cors');       // CORS middleware to allow frontend (React) to talk to backend
+const morgan = require('morgan');   // Middleware to log HTTP requests (for debugging)
 
+// Import route handlers (routers)
 const planetsRouter = require('./routes/planets/planets.router');
 const launchesRouter = require('./routes/launches/launches.router');
 
-// Create an Express application
+// Create the Express application (main app object)
 const app = express();
 
-// Middleware to automatically parse incoming JSON data in requests
-app.use(cors({ 
-    origin: 'http://localhost:3000',
+// ----------- MIDDLEWARES -----------
+
+// Enable CORS so requests from http://localhost:3000 are allowed
+app.use(cors({
+  origin: 'http://localhost:3000',
 }));
+
+// Parse incoming JSON data automatically and store it in req.body
 app.use(express.json());
+
+// Serve static files (like index.html, CSS, JS) from the "public" folder
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// Log each HTTP request in the console (method, status, response time)
 app.use(morgan('combined'));
+
+// ----------- ROUTES -----------
+
+// Attach planets-related routes (GET /planets)
 app.use('/planets', planetsRouter);
+
+// Attach launches-related routes (GET/POST /launches)
 app.use('/launches', launchesRouter);
+
+// Serve index.html when someone visits /index.html directly
 app.get('/index.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
-// Export the app so it can be used in other files (like server.js)
+// Export the app object so other files (like server.js) can use it to start the server
 module.exports = app;
