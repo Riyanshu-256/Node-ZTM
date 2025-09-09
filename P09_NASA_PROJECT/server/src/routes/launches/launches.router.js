@@ -5,6 +5,7 @@ const express = require('express');
 const {
     httpGetAllLaunches,
     httpAddNewLaunch,
+    httpAbortLaunch,
 } = require('./launches.controller');
 
 // Create a new router for launchesRouter
@@ -13,6 +14,7 @@ const launchesRouter = express.Router();
 // Function to get all the launches information 
 launchesRouter.get('/', httpGetAllLaunches);
 launchesRouter.post('/', httpAddNewLaunch);
+launchesRouter.delete('/:id', httpAbortLaunch);
 
 // Exporting the module so that we can use it 
 module.exports = launchesRouter;
