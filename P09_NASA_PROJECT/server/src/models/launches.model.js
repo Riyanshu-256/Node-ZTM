@@ -1,7 +1,10 @@
 /*
 This file saves all launch details in memory. It lets you see all launches, add new ones, change or remove launches using their flight number, and check which missions are upcoming or successful.
 */
+
 const launches = new Map();
+
+let latestFlightNumber = 100;
 
 const launch = {
   flightNumber: 100,
@@ -20,6 +23,21 @@ function getAllLaunches() {
   return Array.from(launches.values());
 }
 
+function addNewLaunch(launch) {
+  latestFlightNumber++;
+  launches.set(
+    launch.flightNumber, 
+    Object.assign(launch, {
+      success: true, 
+      upcoming: true,
+      customers: ['Zero to Mastery', 'NASA'],
+      flightNumber: latestFlightNumber,
+    })
+  );
+}
+
 module.exports = {
   launches,
+  getAllLaunches,
+  addNewLaunch,
 };
