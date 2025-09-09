@@ -1,3 +1,7 @@
+/*
+This file sets up the main Express app. It adds important middlewares (like to read JSON data) and connects all routers, so the whole app works together properly.
+ */
+
 // Load the Express library to create a web server and handle routes
 const express = require('express');
 const cors = require('cors');

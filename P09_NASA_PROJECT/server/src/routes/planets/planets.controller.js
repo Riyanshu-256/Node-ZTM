@@ -1,3 +1,7 @@
+/*
+This file is like the “manager” for planets. It takes requests from users (like “give me all planets”), talks to the model to get or change data, and then sends the correct answer back to the user.
+*/
+
 // Import (load) the planets data from the planets.model file
 const { planets } = require('../../models/planets.model');
 

@@ -1,5 +1,10 @@
+/*
+This file is where all the planet data is managed. It decides how the data is stored, fetched, or updated. If later you connect a database, this file will handle that part, so the rest of the project doesn’t need to know how data is stored.
+*/
+
 // Import csv-parse to help read CSV files
 const { parse } = require('csv-parse');
+const path = require('path');
 
 // Import file system (fs) to read files
 const fs = require('fs');
@@ -24,7 +29,7 @@ function loadPlanetsData() {
     return new Promise((resolve, reject) => {
 
         // Open the kepler_data.csv file
-        fs.createReadStream('./kepler_data.csv')
+        fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'kepler_data.csv'))
             // Send data to csv parser
             .pipe(parse({
                 comment: '#',   // Skip lines starting with #
@@ -43,7 +48,7 @@ function loadPlanetsData() {
             .on('error', (err) => {
                 console.log(err);
                 reject(err); // Stop if error happens
-            })
+            }) 
             // Runs after reading is complete
             .on('end', () => {
                 console.log(`Total habitable planets: ${habitablePlanets.length}`);

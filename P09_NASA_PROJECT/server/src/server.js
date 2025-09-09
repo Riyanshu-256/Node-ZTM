@@ -1,3 +1,7 @@
+/*
+This is the starting point of the project. It runs the app on a specific port so that users can send requests and get responses.
+*/
+
 // Load Node.js module to create an HTTP server
 const http = require('http');
 
