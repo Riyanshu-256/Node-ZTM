@@ -21,8 +21,8 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(morgan('combined'));
-app.use(planetsRouter);
-app.use(launchesRouter);
+app.use('/planets', planetsRouter);
+app.use('/launches', launchesRouter);
 app.get('/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
