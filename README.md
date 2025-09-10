@@ -17,7 +17,7 @@
 
 ## ⭐ Overview
 
-This repository documents my journey learning **Node.js** — from fundamentals to building APIs. It contains small, focused examples (like `hello.js`) and will grow with middleware, REST, databases, auth, testing, and deployment.
+This repository documents my journey learning **Node.js** — from fundamentals to building APIs. It contains small, focused examples (like `hello.js`) and will grow with middleware, REST, databases, auth, testing, and deployment.   
 
 ---
 
