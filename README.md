@@ -10,7 +10,7 @@
   <a href="#-scripts">📜 NPM Scripts</a> ·
   <a href="#-learning-checklist">✅ Learning Checklist</a> ·
   <a href="#-roadmap">🧭 Roadmap</a> · 
-  <a href="#-contributing">🤝 Contributing</a>
+  <a href="#-contributing">🤝 Contributing</a>   
 </p>
 
 ---
