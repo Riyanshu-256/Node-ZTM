@@ -4,20 +4,20 @@
 
 <p align="center">
   <a href="#-features">✨ Features</a> ·
-  <a href="#-tech-stack">🧰 Tech Stack</a> ·
+  <a href="#-tech-stack">🧰 Tech Stack</a> ·    
   <a href="#-quick-start">⚡ Quick Start</a> ·
   <a href="#-project-structure">🗂 Project Structure</a> · 
   <a href="#-scripts">📜 NPM Scripts</a> ·
   <a href="#-learning-checklist">✅ Learning Checklist</a> ·
   <a href="#-roadmap">🧭 Roadmap</a> · 
-  <a href="#-contributing">🤝 Contributing</a>
+  <a href="#-contributing">🤝 Contributing</a>   
 </p>
 
 ---
 
 ## ⭐ Overview
 
-This repository documents my journey learning **Node.js** — from fundamentals to building APIs. It contains small, focused examples (like `hello.js`) and will grow with middleware, REST, databases, auth, testing, and deployment.
+This repository documents my journey learning **Node.js** — from fundamentals to building APIs. It contains small, focused examples (like `hello.js`) and will grow with middleware, REST, databases, auth, testing, and deployment.   
 
 ---
 
