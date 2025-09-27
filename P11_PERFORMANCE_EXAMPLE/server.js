@@ -2,8 +2,9 @@ const express = require('express');
 
 // Import Node.js built-in cluster module
 // Allows creating multiple worker processes to run a single server efficiently
-
 const cluster = require('cluster');
+
+const os = require('os');
 
 const app = express();
 
@@ -29,9 +30,11 @@ app.get('/timer', (req, res) => {
 console.log('Running server.js....');
 if(cluster.isMaster){
     console.log('Master has been started...');
-    cluster.fork();
-    cluster.fork();
+    const NUM_WORKERS = os.cpus().length;
+    for(let i = 0; i <NUM_WORKERS; i++){
+        cluster.fork();
+    }
 } else {
-    console.log('Workser process started.');
+    console.log('Worker process started.');
     app.listen(3000);
 }
