@@ -7,8 +7,6 @@ const cluster = require('cluster');
 
 const app = express();
 
-
-
 function delay(duration){
     const startTime = Date.now();
     while(Date.now() - startTime < duration){
