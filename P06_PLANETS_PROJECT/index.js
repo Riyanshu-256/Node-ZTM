@@ -14,17 +14,20 @@ function isHabitablePlanet(planet) {
 // Read the CSV file as a stream
 fs.createReadStream('kepler_data.csv')
   .pipe(parse({    // Parse the CSV line by line
-     comment: '#',  // Skip lines that start with #
-  columns: true,    // Use first row as column names
-}))
-.on('data', (data) => {    // For each row in the file
-  if (isHabitablePlanet(data)) {  // If the planet is good for life
-    habitablePlanets.push(data);  // Save it in the list
-  }
-})
-.on('error', (err) => {    // If something goes wrong
-  console.log(err);     // Show the error
-})
-.on('end', () => {    // When file is fully read
-  console.log(habitablePlanets.length);  // Show total habitable planets
-});
+    comment: '#',  // Skip lines that start with #
+    columns: true,    // Use first row as column names
+  }))
+  .on('data', (data) => {    // For each row in the file
+    if (isHabitablePlanet(data)) {  // If the planet is good for life
+      habitablePlanets.push(data);  // Save it in the list
+    }
+  })
+  .on('error', (err) => {    // If something goes wrong
+    console.log(err);     // Show the error
+  })
+  .on('end', () => {    // When file is fully read
+    console.log(habitablePlanets.map((planet) => {
+      return planet['kepler_name'];
+    }));
+    console.log(`${habitablePlanets.length} habitable planets found!`);  // Show total habitable planets
+  });
