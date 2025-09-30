@@ -4,6 +4,8 @@ It stores all launch data, lets us add new launches, get all launches,
 check if a launch exists, and mark a launch as aborted.
 */
 
+// const launches = require('./launches.mongo');
+
 // Store all launches in a Map (key = flightNumber, value = launch object)
 const launches = new Map();
 
