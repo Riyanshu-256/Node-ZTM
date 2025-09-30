@@ -22,10 +22,12 @@ const MONGO_URL =
 // Create an HTTP server that uses your Express app to handle requests
 const server = http.createServer(app);
 
+// runs once when the connection is successfully opened.
 mongoose.connection.once('open', () => {
   console.log('MongoDB connection ready!');
 });
 
+// listens continuously for any connection errors.
 mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
