@@ -40,8 +40,8 @@ app.use('/planets', planetsRouter);
 // Attach launches-related routes (GET/POST /launches)
 app.use('/launches', launchesRouter);
 
-// Serve index.html when someone visits /index.html directly
-app.get('/index.html', (req, res) => {
+// Serve index.html for all client-side routes
+app.get(/^(?!.*api).*/, (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 

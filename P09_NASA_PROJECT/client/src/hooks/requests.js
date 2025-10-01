@@ -1,6 +1,6 @@
 // Base URL for the backend API
 // This is where all requests (planets, launches, etc.) will be sent
-const API_URL = 'http://localhost:8000';
+const API_URL = '';
 
 /* 
 Fetch the list of planets from the API
@@ -10,7 +10,9 @@ Fetch the list of planets from the API
 */
 async function httpGetPlanets() {
   const response = await fetch(`${API_URL}/planets`);
-  return await response.json();
+  const fetchedPlanets = await response.json();
+  console.log('Fetched Planets:', fetchedPlanets);
+  return fetchedPlanets;
 }
 
 /* 
@@ -35,14 +37,17 @@ Submit a new launch to the API
 */
 async function httpSubmitLaunch(launch) {
   try {
-    return await fetch(`${API_URL}/launches`, {
+    const response = await fetch(`${API_URL}/launches`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(launch),
     });
+    console.log('Launch Submission Response:', response);
+    return response;
   } catch (err) {
+    console.log(err);
     return {
       ok: false,
     };
