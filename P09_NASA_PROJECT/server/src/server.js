@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 const { loadPlanetsData } = require('./models/planets.model');
+const { loadLaunchesData } = require('./models/launches.model');
 
 // Get the port number from environment variables (useful for hosting)
 // If no port is set, use 8000 as default
@@ -37,6 +38,7 @@ async function startServer() {
   await mongoose.connect(MONGO_URL);
 
   await loadPlanetsData();
+  await loadLaunchesData();
 
   // Start the server and listen on the specified port
   server.listen(PORT, () => {
