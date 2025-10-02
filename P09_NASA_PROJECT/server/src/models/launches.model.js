@@ -41,8 +41,9 @@ function existsLaunchWithId(launchId) {
 Get all launches as an array
 - Converts Map values into a simple array so we can send as JSON
 */
-function getAllLaunches() {
-  return Array.from(launches.values());
+async function getAllLaunches() {
+  return await launchesDatabase
+  .find({}, { '_id': 0, '_v': 0 });
 }
 
 async function saveLaunch(launch) {

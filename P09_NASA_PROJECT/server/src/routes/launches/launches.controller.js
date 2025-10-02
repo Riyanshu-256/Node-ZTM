@@ -8,9 +8,9 @@ const {
 
 // Controller function to handle GET /launches
 // Responds with all available launches as JSON
-function httpGetAllLaunches(req, res) {
+async function httpGetAllLaunches(req, res) {
   // Get all launches and return as JSON with 200 (OK) status
-  return res.status(200).json(getAllLaunches());
+  return res.status(200).json(await getAllLaunches());
 }
 
 // Controller function to handle POST /launches
