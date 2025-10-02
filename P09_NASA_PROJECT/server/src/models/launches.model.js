@@ -4,7 +4,7 @@ It stores all launch data, lets us add new launches, get all launches,
 check if a launch exists, and mark a launch as aborted.
 */
 
-// const launches = require('./launches.mongo');
+const launchesDatabase = require('./launches.mongo');
 
 // Store all launches in a Map (key = flightNumber, value = launch object)
 const launches = new Map();
@@ -24,8 +24,10 @@ const launch = {
   success: true,   // Considered a successful mission
 };
 
+saveLaunch(launch);
+
 // Add the initial launch to the Map
-launches.set(launch.flightNumber, launch);
+// launches.set(launch.flightNumber, launch);
 
 /*
 Check if a launch exists by its flight number
@@ -41,6 +43,14 @@ Get all launches as an array
 */
 function getAllLaunches() {
   return Array.from(launches.values());
+}
+
+async function saveLaunch(launch) {
+  await launchesDatabase.updateOne({
+    flightNumber: launch.flightNumber,
+  }, launch, {
+    upsert: true,
+  })
 }
 
 /*
