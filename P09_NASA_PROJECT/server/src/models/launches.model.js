@@ -27,7 +27,7 @@ const launch = {
   success: true,   // Considered a successful mission
 };
 
-saveLaunch(launch); // This call is moved to loadLaunchesData
+// saveLaunch(launch); // This call is moved to loadLaunchesData
 
 // Add the initial launch to the Map
 // launches.set(launch.flightNumber, launch);
