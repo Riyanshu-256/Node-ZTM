@@ -47,11 +47,12 @@ console.log(launch);
 }
 
 // Controller function to handle DELETE requests to abort a launch
-function httpAbortLaunch(req, res) {
+async function httpAbortLaunch(req, res) {
   const launchId = Number(req.params.id); // Get launch ID from URL parameters
 
+  const existsLaunch = await existsLaunchWithId(launchId);
   // Check if a launch with the given ID exists
-  if (!existsLaunchWithId(launchId)) {
+  if (!existsLaunch) {
     return res.status(404).json({
       error: 'Launch not found',
     });
