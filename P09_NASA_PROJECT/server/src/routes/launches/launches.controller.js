@@ -17,7 +17,7 @@ async function httpGetAllLaunches(req, res) {
 }
 
 // Controller function to handle POST requests to add a new launch
-function httpAddNewLaunch(req, res) {
+async function httpAddNewLaunch(req, res) {
   const launch = req.body; // Extract launch data from the request body
 
   // Validate that all required properties are present
@@ -38,7 +38,9 @@ function httpAddNewLaunch(req, res) {
   }
 
   // Schedule the new launch by adding it to the data
-  scheduleNewLaunch(launch);
+  await scheduleNewLaunch(launch);
+
+console.log(launch);
 
   // Respond with status 201 (Created) and return the launch object
   return res.status(201).json(launch);
