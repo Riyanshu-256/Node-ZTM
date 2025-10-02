@@ -83,20 +83,16 @@ async function saveLaunch(launch) {
   });
 }
 
-/*
-Add a new launch
-- Increments flight number
-- Adds success, upcoming, and customers fields automatically
-- Stores the new launch in the Map
-*/
-async function addNewLaunch(launch) {
-  const newFlightNumber = await getLatestFlightNumber() + 1;
+async function scheduleNewLaunch(launch){
+  const newFlightNumber = await getLatestFlightNumber() + 1; 
+
   const newLaunch = Object.assign(launch, {
     success: true,
     upcoming: true,
     customers: ['Zero to Mastery', 'NASA'],
     flightNumber: newFlightNumber,
   });
+
   await saveLaunch(newLaunch);
 }
 
@@ -120,6 +116,6 @@ module.exports = {
   loadLaunchesData,
   existsLaunchWithId,
   getAllLaunches,
-  addNewLaunch,
   abortLaunchById,
+  scheduleNewLaunch,
 };
