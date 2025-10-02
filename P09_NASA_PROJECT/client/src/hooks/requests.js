@@ -1,6 +1,5 @@
-// Base URL for the backend API
-// This is where all requests (planets, launches, etc.) will be sent
-const API_URL = '';
+// API_URL should be defined here, for example: 'http://localhost:8000'
+const API_URL = 'http://localhost:8000';
 
 /* 
 Fetch the list of planets from the API

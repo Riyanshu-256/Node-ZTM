@@ -40,7 +40,9 @@ function loadPlanetsData() {
 }
 
 async function getAllPlanets(){
-    const planetsFromDb = await planets.find({});
+    const planetsFromDb = await planets.find({}, {
+        '_id': 0, '__v': 0,
+    });
     console.log('Planets from DB:', planetsFromDb.length);
     return planetsFromDb;
 }
